@@ -1,6 +1,10 @@
 import React from "react";
 import { useTodoContext } from "../utils/GlobalState";
+import TodoItemWithEdit from "./TodoItemWithEdit";
 
+/**
+ * Styling
+ */
 const styles = {
   ul: {
     display: "flex",
@@ -8,60 +12,13 @@ const styles = {
     listStyleType: "none",
   },
   li: {
-    width: "100%",
     margin: "10px"
   },
 }
 
-
-const TodoItemWithEdit = props => {
-  
-  const [name, setText] = React.useState(props.item.name);
-  const [isEdit, setEditMode] = React.useState(false);
-
-  const changeEditMode = () => setEditMode(!isEdit)
-
-  const editTodoItem = (id, editType) => props.dispatch({type: editType === "setRemove" ? "TODO_REMOVE" : editType === "setTodo" ? "TODO_PRIORITIZE" : "", id})
-
-  const saveText = (e, id, isSaving) => {
-    e.preventDefault();
-    if (isSaving) props.dispatch({type: "TODO_RENAME", id, name})
-    changeEditMode();
-  }
-
-  return (
-    <li style={styles.li} data-id={props.item.id} >
-      {!isEdit ? 
-      <>
-        <h4 style={props.item.priority ? {textDecoration: "line-through"}: {}}>
-          {props.item.name}
-        </h4>
-        <button onClick={() => editTodoItem(props.item.id,"setTodo")} >
-          {props.item.priority ? "set UNDO" : "set TODO"}
-        </button>
-        <button onClick={changeEditMode}>
-          edit
-        </button>
-        <button onClick={() => editTodoItem(props.item.id,"setRemove")} >
-          delete
-        </button>
-      </>
-      :
-      <form>
-        <input type="text" value={name} onChange={e => setText(e.target.value)} />
-        <button type="submit" onClick={e => saveText(e, props.item.id, true)}>
-          save
-        </button>
-        <button onClick={e => saveText(e, props.item.id, false)}>
-          cancel
-        </button>
-      </form>
-      }
-    </li>
-  );
-
-}
-
+/**
+ * ToDo Item
+ */
 const TodoItem = ({item, dispatch}) => {
 
   const editTodoItem = (id, editType) => dispatch({type: editType === "setRemove" ? "TODO_REMOVE" : editType === "setTodo" ? "TODO_PRIORITIZE" : "", id})
@@ -81,18 +38,30 @@ const TodoItem = ({item, dispatch}) => {
   );
 }
 
+
+/**
+ * ToDo List
+ */
 const TodoList = () => {
 
   const {state, dispatch} = useTodoContext();
 
+  const [withEdit, setTodoListMode] = React.useState(true);
+
+  const toggleTodoListMode = () => setTodoListMode(!withEdit)
+
   return (
     <section>
       <h3> List of Tasks </h3>
+      <button onClick={toggleTodoListMode}>
+        {withEdit ? "without Edit Button" : "with Edit Button"}
+      </button>
       <ul style={styles.ul}>
         { 
           state.map(item => 
-            <TodoItemWithEdit key={item.id} item={item} dispatch={dispatch} />
-            //<TodoItem key={item.id} item={item} dispatch={dispatch} />
+            withEdit ?  
+              <TodoItemWithEdit key={item.id} item={item} dispatch={dispatch} />
+            : <TodoItem key={item.id} item={item} dispatch={dispatch} />
           )
         }
       </ul>
