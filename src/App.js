@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <TodoProvider>
-        <h1> ToDo (Reducer Hook)  </h1>
+        <h1> ToDo App </h1>
         <Form />
         <TodoList />
       </TodoProvider>

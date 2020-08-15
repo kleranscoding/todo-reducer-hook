@@ -40,7 +40,7 @@ const Form = props => {
   return (
     <section>
       <form onClick={handleSubmit}>
-        <h3>Task Form</h3>
+        <h3>ToDo Form</h3>
         <input ref={inputRef} style={styles.inputText} 
           type="text" placeholder="enter a task" 
         />
