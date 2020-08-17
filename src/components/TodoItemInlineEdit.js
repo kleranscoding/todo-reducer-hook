@@ -23,7 +23,7 @@ const TodoItemInlineEdit = ({item, dispatch}) => {
   }
 
   return (
-    <li data-id={item.id} >
+    <li data-id={item.id} className="todo-item">
       {!isEdit ? 
         <h4 onClick={changeEditMode} className={item.priority ? "with-edit completed" : "with-edit incompleted"}
           style={item.priority ? {textDecoration: "line-through"}: {}}>

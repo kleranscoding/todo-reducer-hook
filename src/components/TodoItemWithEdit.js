@@ -22,7 +22,7 @@ const TodoItemWithEdit = props => {
   }
 
   return (
-    <li style={styles.li} data-id={props.item.id} >
+    <li className="todo-item" data-id={props.item.id} >
       {!isEdit ? 
       <>
         <h4 style={props.item.priority ? {textDecoration: "line-through"}: {}}>

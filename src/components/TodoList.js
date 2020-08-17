@@ -5,20 +5,6 @@ import TodoItemInlineEdit from "./TodoItemInlineEdit";
 import '../css/TodoItem.css';
 
 /**
- * Styling
- */
-const styles = {
-  ul: {
-    display: "flex",
-    flexDirection: "column",
-    listStyleType: "none",
-  },
-  li: {
-    margin: "10px"
-  },
-}
-
-/**
  * ToDo Item
  */
 const TodoItem = ({item, dispatch}) => {
@@ -26,7 +12,7 @@ const TodoItem = ({item, dispatch}) => {
   const editTodoItem = (id, editType) => dispatch({type: editType === "setRemove" ? "TODO_REMOVE" : editType === "setTodo" ? "TODO_PRIORITIZE" : "", id})
   
   return (
-    <li style={styles.li}>
+    <li>
       <h4 style={item.priority ? {textDecoration: "line-through"}: {}}>
         {item.name}
       </h4>
@@ -53,12 +39,12 @@ const TodoList = () => {
   const toggleTodoListMode = () => setTodoListMode(!withEdit)
 
   return (
-    <section>
+    <section className="render-todos">
       <h3> List of Tasks </h3>
       <button onClick={toggleTodoListMode} disabled={state.length === 0} >
         {!withEdit ? "inline Editing" : "button Editing"}
       </button>
-      <ul style={styles.ul}>
+      <ul className="todo-list">
         { 
           state.map(item => 
             withEdit ?  

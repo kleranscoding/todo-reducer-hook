@@ -1,3 +1,24 @@
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.todo-item {
+  background-color: #61dafb;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 50%;
+  border-radius: 5px;
+  color: #606060;
+}
+
 .completed {
   text-decoration: line-through;
 }
@@ -6,6 +27,3 @@
   cursor: pointer;
 }
 
-li {
-  margin: 10px;
-}
