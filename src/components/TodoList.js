@@ -7,7 +7,7 @@ import '../css/TodoItem.css';
 /**
  * ToDo Item
  */
-const TodoItem = ({item, dispatch}) => {
+const TodoItem = ({item, dispatch, index}) => {
 
   const editTodoItem = (id, editType) => dispatch({type: editType === "setRemove" ? "TODO_REMOVE" : editType === "setTodo" ? "TODO_PRIORITIZE" : "", id})
   
@@ -38,6 +38,9 @@ const TodoList = () => {
 
   const toggleTodoListMode = () => setTodoListMode(!withEdit)
 
+  /**
+   * added update by index
+   */
   return (
     <section className="render-todos">
       <h3> List of Tasks </h3>
@@ -51,6 +54,7 @@ const TodoList = () => {
               <TodoItemInlineEdit key={item.id} item={item} dispatch={dispatch} />
             : <TodoItemWithEdit key={item.id} item={item} dispatch={dispatch} />
           )
+          //state.map((item, index) => <TodoItem key={index} index={index} item={item} dispatch={dispatch} />)
         }
       </ul>
     </section>

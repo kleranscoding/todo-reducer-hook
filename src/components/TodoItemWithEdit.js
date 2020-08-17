@@ -1,11 +1,5 @@
 import React from "react";
 
-const styles = {
-  li: {
-    margin: "10px"
-  }
-}
-
 const TodoItemWithEdit = props => {
   
   const [name, setText] = React.useState(props.item.name);
