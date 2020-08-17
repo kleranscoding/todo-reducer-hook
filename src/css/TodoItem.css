@@ -1,0 +1,11 @@
+.completed {
+  text-decoration: line-through;
+}
+
+.with-edit:hover {
+  cursor: pointer;
+}
+
+li {
+  margin: 10px;
+}

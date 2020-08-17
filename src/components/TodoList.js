@@ -1,6 +1,8 @@
 import React from "react";
 import { useTodoContext } from "../utils/GlobalState";
 import TodoItemWithEdit from "./TodoItemWithEdit";
+import TodoItemInlineEdit from "./TodoItemInlineEdit";
+import '../css/TodoItem.css';
 
 /**
  * Styling
@@ -53,15 +55,15 @@ const TodoList = () => {
   return (
     <section>
       <h3> List of Tasks </h3>
-      <button onClick={toggleTodoListMode}>
-        {withEdit ? "without Edit Button" : "with Edit Button"}
+      <button onClick={toggleTodoListMode} disabled={state.length === 0} >
+        {!withEdit ? "inline Editing" : "button Editing"}
       </button>
       <ul style={styles.ul}>
         { 
           state.map(item => 
             withEdit ?  
-              <TodoItemWithEdit key={item.id} item={item} dispatch={dispatch} />
-            : <TodoItem key={item.id} item={item} dispatch={dispatch} />
+              <TodoItemInlineEdit key={item.id} item={item} dispatch={dispatch} />
+            : <TodoItemWithEdit key={item.id} item={item} dispatch={dispatch} />
           )
         }
       </ul>
