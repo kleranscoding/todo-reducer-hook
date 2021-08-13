@@ -7,7 +7,7 @@ import { TodoProvider } from './utils/GlobalState';
 function App() {
 
   return (
-    <div className="App">
+    <div className="app">
       <TodoProvider>
         <h1> ToDo App </h1>
         <Form />
