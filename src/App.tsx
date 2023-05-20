@@ -1,8 +1,7 @@
-import React from 'react';
+
+import { Form, TodoList } from "./components";
+import { TodoProvider } from "./context/todo.context";
 import './css/App.css';
-import Form from './components/Form';
-import TodoList from './components/TodoList';
-import { TodoProvider } from './utils/GlobalState';
 
 function App() {
 

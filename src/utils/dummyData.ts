@@ -1,4 +1,7 @@
-module.exports = [
+
+import { ITodo } from "./types";
+
+export const initData: ITodo[] = [
   {
     id: 1,
     name: "demo task 1",
@@ -13,5 +16,5 @@ module.exports = [
     id: 3,
     name: "demo task 3",
     priority: false
-  }
+  },
 ];

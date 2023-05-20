@@ -1,4 +1,4 @@
-import React from "react";
+import { FormEvent, useState } from "react";
 import '../css/TodoItem.css';
 
 
@@ -7,16 +7,16 @@ import '../css/TodoItem.css';
  * onClick name/title to enter input mode
  * onBlur to save automatically and exit input mode
  */
-const TodoItemInlineEdit = ({item, dispatch}) => {
+const TodoItemInlineEdit = ({item, dispatch}: any) => {
   
-  const [name, setText] = React.useState(item.name);
-  const [isEdit, setEditMode] = React.useState(false);
+  const [name, setText] = useState(item.name);
+  const [isEdit, setEditMode] = useState(false);
 
   const changeEditMode = () => setEditMode(!isEdit)
 
-  const editTodoItem = (id, editType) => dispatch({type: editType === "setRemove" ? "TODO_REMOVE" : editType === "setTodo" ? "TODO_PRIORITIZE" : "", id})
+  const editTodoItem = (id: number, editType: string) => dispatch({type: editType === "setRemove" ? "TODO_REMOVE" : editType === "setTodo" ? "TODO_PRIORITIZE" : "", id})
 
-  const saveText = (e, id, isSaving) => {
+  const saveText = (e: FormEvent<HTMLInputElement>, id: number, isSaving: boolean) => {
     e.preventDefault();
     if (isSaving) dispatch({type: "TODO_RENAME", id, name})
     changeEditMode();

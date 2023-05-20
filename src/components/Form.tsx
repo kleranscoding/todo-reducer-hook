@@ -1,5 +1,5 @@
-import React from "react";
-import { useTodoContext } from "../utils/GlobalState";
+import { useRef } from "react";
+import { useTodoContext } from "../context/todo.context";
 
 const styles = {
   formGroup: {
@@ -23,18 +23,20 @@ const styles = {
   }
 }
 
-const Form = props => {
+const Form = ({...props}) => {
 
-  const inputRef = React.useRef();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { dispatch } = useTodoContext();
 
-  const {dispatch} = useTodoContext();
-
-  const handleSubmit = e => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    const aaa = inputRef.current.value;
+    let aaa = ""
+    if (inputRef.current) {
+      aaa = inputRef.current.value;
+    }
     if (!aaa || aaa.trim() === "") return;
     dispatch({type: "TODO_ADD", name: aaa});
-    inputRef.current.value = "";
+    inputRef.current && (inputRef.current.value = "");
   }
 
   return (

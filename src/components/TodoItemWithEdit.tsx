@@ -1,15 +1,15 @@
-import React from "react";
+import { FormEvent, useState } from "react";
 
-const TodoItemWithEdit = props => {
+const TodoItemWithEdit = (props: any) => {
   
-  const [name, setText] = React.useState(props.item.name);
-  const [isEdit, setEditMode] = React.useState(false);
+  const [name, setText] = useState(props.item.name);
+  const [isEdit, setEditMode] = useState(false);
 
   const changeEditMode = () => setEditMode(!isEdit)
 
-  const editTodoItem = (id, editType) => props.dispatch({type: editType === "setRemove" ? "TODO_REMOVE" : editType === "setTodo" ? "TODO_PRIORITIZE" : "", id})
+  const editTodoItem = (id: number, editType: string) => props.dispatch({type: editType === "setRemove" ? "TODO_REMOVE" : editType === "setTodo" ? "TODO_PRIORITIZE" : "", id})
 
-  const saveText = (e, id, isSaving) => {
+  const saveText = (e: FormEvent<HTMLInputElement | HTMLButtonElement>, id: number, isSaving: boolean) => {
     e.preventDefault();
     if (isSaving) props.dispatch({type: "TODO_RENAME", id, name})
     changeEditMode();
