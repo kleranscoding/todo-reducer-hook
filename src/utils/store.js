@@ -1,4 +1,4 @@
-module.exports = [
+const initData = [
   {
     id: 1,
     name: "demo task 1",
@@ -15,3 +15,5 @@ module.exports = [
     priority: false
   }
 ];
+
+export default initData;

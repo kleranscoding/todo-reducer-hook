@@ -4,3 +4,6 @@ This mini project is an updated version of Thomas' codes with the ability to edi
 
 ### Special note
 Now include inline editing!
+
+## Edit
+### Update with Vite
